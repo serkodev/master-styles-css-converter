@@ -1,14 +1,25 @@
 <script setup lang="ts">
 import * as monaco from "monaco-editor";
-import { onMounted, ref } from "vue";
+import { nextTick, onMounted, ref } from "vue";
 
-const root = ref<HTMLElement>();
+const el = ref();
 
 onMounted(() => {
-  root.value && monaco.editor.create(root.value);
+  if (el.value) {
+    const editor = monaco.editor.create(el.value, {
+      automaticLayout: true,
+      language: "css",
+      value: `body {
+    background: red;
+}`
+    });
+    nextTick(() => {
+      editor.layout();
+    });
+  }
 });
 </script>
 
 <template>
-  <div ref="root"></div>
+  <div class="w:100vw h:100vh" ref="el"></div>
 </template>

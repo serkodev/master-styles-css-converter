@@ -7,6 +7,21 @@
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.17.9.tgz#9c94189a6062f0291418ca021077983058e171ef"
   integrity sha512-vqUSBLP8dQHFPdPi9bc5GK9vRkYHJ49fsZdtoJ8EQ8ibpwk5rPKfvNIwChB0KVXcIjcepEBBd2VHC5r9Gy8ueg==
 
+"@master/normal.css@^1.9.3":
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/@master/normal.css/-/normal.css-1.9.3.tgz#541685db74f85981b8f4caf901bbd5b260ef3347"
+  integrity sha512-U+cnZbfLi4eXaYu6B2JwlXqmSUw8sv6irxCNzn5sjGsfccjDL7Tra9Nvrea0pHMs326HmBI9LkfQ0AdMqGzlOQ==
+
+"@master/style@^1.3.5":
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@master/style/-/style-1.3.5.tgz#367b770940e94bc4e8f2ce266f391eaf2217c427"
+  integrity sha512-E2itac3pjU7RWEKH9H0yQuIjSs/1LvoauGlvBwGf371EwRjEPFZHnMEYalqFrU5JTyhsm1kDmOtENbjA9YgVdQ==
+
+"@master/styles@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@master/styles/-/styles-1.8.0.tgz#4e41b1033f6517ea2da2ed650734aa28865b72ad"
+  integrity sha512-ItgTlE233f1BLPDSrdy5gYicl1WM79smoHQXp7NWsaHO7u0K8vPKO+qw48/QoOUW9BFCFGrRVs7YaMOPDQUBmQ==
+
 "@vitejs/plugin-vue@^2.3.1":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-2.3.1.tgz#5f286b8d3515381c6d5c8fa8eee5e6335f727e14"
