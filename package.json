@@ -3,14 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "web": "cd web && pnpm dev",
-    "web:build": "cd web && pnpm build",
-    "draft": "pnpm -s dlx ts-node src/index.ts"
-  },
-  "dependencies": {
+    "web:build": "cd web && pnpm build"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.20.6",
     "eslint": "^8.13.0",
+    "ts-node": "^10.7.0",
     "typescript": "^4.5.4",
     "vite": "^2.9.5",
     "vue-tsc": "^0.34.7"
