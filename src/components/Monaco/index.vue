@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import "./worker";
 import * as monaco from "monaco-editor";
 import { nextTick, onMounted, ref } from "vue";
 
