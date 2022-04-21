@@ -3,17 +3,34 @@ import "./worker";
 import * as monaco from "monaco-editor";
 import { nextTick, onMounted, ref } from "vue";
 
+const props = defineProps({
+  value: String,
+});
+
+const emit = defineEmits(["update:value", "delete"]);
+
 const el = ref();
+let editor: monaco.editor.IStandaloneCodeEditor;
 
 onMounted(() => {
   if (el.value) {
-    const editor = monaco.editor.create(el.value, {
+    editor = monaco.editor.create(el.value, {
       automaticLayout: true,
       language: "css",
-      value: `body {
-    background: red;
-}`
+      minimap: {
+        enabled: false,
+      },
+      scrollBeyondLastLine: false,
+      overviewRulerLanes: 0,
+      theme: "vs-dark",
+      value: props.value,
     });
+
+    editor.onDidChangeModelContent((e) => {
+      // props.value = editor.getValue();
+      emit("update:value", editor.getValue());
+    });
+
     nextTick(() => {
       editor.layout();
     });
@@ -22,5 +39,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="w:100vw h:100vh" ref="el"></div>
+  <div class="ovf:hidden">
+    <div class="w:full h:full" ref="el"></div>
+  </div>
 </template>
