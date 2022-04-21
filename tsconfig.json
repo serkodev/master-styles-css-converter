@@ -1,12 +1,7 @@
 {
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  },
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
+    "module": "commonjs",
     "esModuleInterop": true,
     "declaration": true,
     "skipLibCheck": true /* Skip type checking of declaration files. */,
