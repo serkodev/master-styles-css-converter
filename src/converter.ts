@@ -94,7 +94,7 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
         }
       }
       if (map.prop) {
-        const val = declVal.replaceAll(/\s/g, ';')
+        const val = declVal.replaceAll(/\s+/g, ';')
         return applyStyle(`${map.prop}:${val}`)
       }
     }
