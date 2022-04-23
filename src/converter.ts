@@ -1,4 +1,4 @@
-import css = require('css')
+import css from 'css'
 import type { MapMeta, PriMapMeta } from 'master-styles-manager/css-properties'
 import CSSProperties from 'master-styles-manager/css-properties'
 import { Styles } from '@master/styles'
@@ -94,7 +94,7 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
         }
       }
       if (map.prop) {
-        const val = declVal.replaceAll(/\s/g, '')
+        const val = declVal.replaceAll(/\s/g, ';')
         return applyStyle(`${map.prop}:${val}`)
       }
     }
@@ -140,7 +140,8 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
   return output
 }
 
-interface DeclarationResult {
+export interface DeclarationResult {
+  selectors?: string[]
   styles: string[]
 }
 
@@ -148,13 +149,15 @@ export const Convert = (cssString: string): DeclarationResult[] => {
   const obj = css.parse(cssString)
   const results: DeclarationResult[] = []
 
-  obj.stylesheet!.rules.forEach((rule: css.Rule) => {
-    if (rule.declarations) {
-      const declarations = rule.declarations.filter(declaration => declaration.type === 'declaration' && (<css.Declaration>declaration).property)
-      const o = parseDeclarations(declarations)
-      results.push({ styles: o })
-    }
-  })
+  if (obj.stylesheet && obj.stylesheet.rules) {
+    obj.stylesheet.rules.forEach((rule: css.Rule) => {
+      if (rule.declarations) {
+        const declarations = rule.declarations.filter(declaration => declaration.type === 'declaration' && (<css.Declaration>declaration).property)
+        const o = parseDeclarations(declarations)
+        results.push({ selectors: rule.selectors, styles: o })
+      }
+    })
+  }
 
   return results
 }
