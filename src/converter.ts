@@ -1,5 +1,5 @@
 import css = require('css')
-import type { PriMapMeta } from 'master-styles-manager/css-properties'
+import type { MapMeta, PriMapMeta } from 'master-styles-manager/css-properties'
 import CSSProperties from 'master-styles-manager/css-properties'
 import { Styles } from '@master/styles'
 import AltProps from './alt-props'
@@ -21,16 +21,33 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
     .map(decl => (decl as Declaration))
 
   // map property
-  // const map = sorted.reduce((all, decl) => all[decl.property] = decl, {})
-  // const findProp = (prop: string): Declaration | undefined => {
-  //   return map[prop]
-  // }
+  const map = decls.reduce((all, decl) => {
+    all[decl.property] = decl
+    return all
+  }, <Record<string, Declaration>>{})
+
+  const findDecl = (prop: string): Declaration | undefined => {
+    // TODO: if multi alt props with different value?
+    const decl = map[prop]
+    if (decl && !decl.finish)
+      return decl
+
+    // search for prefixed proerty (e.g. -webkit-)
+    const alts = AltProps(prop)
+    if (!alts)
+      return
+
+    for (const alt of alts) {
+      const altDecl = map[alt]
+      if (altDecl && !decl.finish)
+        return altDecl
+    }
+  }
 
   const findMasterCSS = (prop: string): PriMapMeta | undefined => {
     const masterCSS = cssPropertyMaster.mapper[prop]
-    if (masterCSS) {
+    if (masterCSS)
       return masterCSS
-    }
 
     // search for prefixed proerty (e.g. -webkit-)
     const alts = AltProps(prop)
@@ -68,24 +85,51 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
       return all
     }
 
-    if (master.related) {
-      //
-    }
-
-    if (master.vals) {
-      // check match condition
-      const matchVal = master.vals.find(val => val.eq === declVal)
-      if (matchVal !== undefined) {
-        all.push(applyStyle(matchVal.style))
-        declaration.finish = true
-        return all
+    const getMapMetaStyle = (map: MapMeta): string | undefined => {
+      if (map.vals) {
+        // check match condition
+        const matchVal = map.vals.find(val => val.eq === declVal)
+        if (matchVal !== undefined) {
+          return applyStyle(matchVal.style)
+        }
+      }
+      if (map.prop) {
+        const val = declVal.replaceAll(/\s/g, '')
+        return applyStyle(`${map.prop}:${val}`)
       }
     }
 
-    if (master.prop) {
-      // replace _ to ; ?
-      declVal = declVal.replaceAll(/\s/g, '')
-      all.push(applyStyle(`${master.prop}:${declVal}`))
+    if (master.related) {
+      const related = master.related
+      const relatedKeys = Object.keys(related)
+      // sort by related props count DESC
+        .sort((a, b) => (b.split(' ').length - 1) - (a.split(' ').length - 1))
+
+      for (const key of relatedKeys) {
+        const props = key.split(' ')
+        const allMatch = props.every((prop) => {
+          const decl = findDecl(prop)
+          return decl && decl.value === value
+        })
+
+        if (allMatch) {
+          const relateItem = related[key]
+          const style = getMapMetaStyle(relateItem)
+          if (style !== undefined) {
+            all.push(style)
+            declaration.finish = true
+            props.forEach((prop) => {
+              map[prop].finish = true
+            })
+            return all
+          }
+        }
+      }
+    }
+
+    const style = getMapMetaStyle(master)
+    if (style !== undefined) {
+      all.push(style)
       declaration.finish = true
       return all
     }
