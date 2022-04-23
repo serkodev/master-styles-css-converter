@@ -1,26 +1,6 @@
-import { MdnCompat, flatAlternativeNameResult } from 'mdn-compat-browserlist'
-import bcd from '@mdn/browser-compat-data'
+import props from '../data/alt-props.json'
 
-// key: prefixed, value: raw
-const altPropsMap = (): Record<string, string | string[]> => {
-  const result: Record<string, string | string[]> = {}
-  const compat = new MdnCompat()
-  const allAlts = compat.alternative(bcd.css.properties)
-
-  for (const [prop, alts] of Object.entries(allAlts)) {
-    if (Array.isArray(alts) && alts.length === 0)
-      continue
-
-    const flats = flatAlternativeNameResult(alts)
-    result[prop] = flats
-    for (const alt of flats) {
-      result[alt] = prop
-    }
-  }
-  return result
-}
-
-const map = altPropsMap()
+const map = props as unknown as (Record<string, string | string[]>)
 
 // find all alt property
 const altProps = (prop: string): string[] | undefined => {
