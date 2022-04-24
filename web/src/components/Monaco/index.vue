@@ -23,6 +23,7 @@ onMounted(() => {
       scrollBeyondLastLine: false,
       overviewRulerLanes: 0,
       theme: 'vs-dark',
+      fontSize: 14,
       value: props.value,
     })
 
