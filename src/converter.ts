@@ -7,9 +7,15 @@ import AltProps from './alt-props'
 const cssPropertyMaster = new CSSProperties()
 Styles.forEach((style) => { cssPropertyMaster.process(style) })
 
-// TODO: $dd:10px padding:$(dd);20px
 const normalizeVariable = (value: string): string => {
-  return value.replaceAll(/\s+/g, ';')
+  const vals = value.split(/\s/).map((val) => {
+    const matches = val.match(/^var\(--(.+)\)$/)
+    if (matches !== null) {
+      return `$(${matches[1]})`
+    }
+    return val
+  })
+  return vals.join(';')
 }
 
 const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {

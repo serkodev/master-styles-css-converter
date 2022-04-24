@@ -21,3 +21,9 @@ test('common', () => {
   `, ['by:none'])
   basic('border-bottom-style:none;', ['bb:none'])
 })
+
+test('variable', () => {
+  // variable
+  basic('padding: var(--foo) 20px', ['p:$(foo);20px'])
+  basic('--foo: var(--bar);', ['$foo:$(bar)'])
+})
