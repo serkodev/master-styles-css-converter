@@ -103,7 +103,7 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
       // replace continuous spaces to semi
       const val = normalizeVariable(value)
       const style = `$${varProp}:${val}`
-      all.push(style)
+      all[style] = true
       declaration.finish = true
       return all
     }
@@ -148,7 +148,7 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
           const relateItem = related[key]
           const style = getMapMetaStyle(relateItem)
           if (style !== undefined) {
-            all.push(style)
+            all[style] = true
             declaration.finish = true
             props.forEach((prop) => {
               map[prop].finish = true
@@ -161,15 +161,15 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
 
     const style = getMapMetaStyle(master)
     if (style !== undefined) {
-      all.push(style)
+      all[style] = true
       declaration.finish = true
       return all
     }
 
     return all
-  }, <Array<string>>[])
+  }, <Record<string, true>>{})
 
-  return output
+  return Object.keys(output)
 }
 
 export interface DeclarationResult {
