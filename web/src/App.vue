@@ -14,7 +14,8 @@ const result = ref('')
 const convert = ($event: any) => {
   css.value = $event
   const styles = Convert(css.value)
-
+  if (styles === undefined)
+    return
   result.value = styles.reduce((all, style) => {
     if (style.selectors) {
       all += `selector: ${style.selectors.join(', ')}\n`

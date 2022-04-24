@@ -7,6 +7,11 @@ import AltProps from './alt-props'
 const cssPropertyMaster = new CSSProperties()
 Styles.forEach((style) => { cssPropertyMaster.process(style) })
 
+// TODO: $dd:10px padding:$(dd);20px
+const normalizeVariable = (value: string): string => {
+  return value.replaceAll(/\s+/g, ';')
+}
+
 const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
   interface Declaration {
     value: string
@@ -65,16 +70,31 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
     if (declaration.finish)
       return all
 
-    const { property, value } = declaration
+    const { property } = declaration
+    const _value = declaration.value
 
     // check is important
     let isImportant = false
     const applyStyle = (style: string): string => style + (isImportant ? '!' : '')
-    let declVal = value.trim()
-    if (declVal.endsWith('!important')) {
-      declVal = declVal.substring(0, declVal.lastIndexOf('!important'))
-      declVal = declVal.trim()
+    let value = _value.trim()
+    if (value.endsWith('!important')) {
+      value = value.substring(0, value.lastIndexOf('!important'))
+      value = value.trim()
       isImportant = true
+    }
+
+    // check is variable
+    if (property.startsWith('--')) {
+      const varProp = property.substring(2)
+      if (!varProp)
+        return all
+
+      // replace continuous spaces to semi
+      const val = normalizeVariable(value)
+      const style = `$${varProp}:${val}`
+      all.push(style)
+      declaration.finish = true
+      return all
     }
 
     // check is supported css property
@@ -88,13 +108,14 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
     const getMapMetaStyle = (map: MapMeta): string | undefined => {
       if (map.vals) {
         // check match condition
-        const matchVal = map.vals.find(val => val.eq === declVal)
+        const matchVal = map.vals.find(val => val.eq === value)
         if (matchVal !== undefined) {
           return applyStyle(matchVal.style)
         }
       }
       if (map.prop) {
-        const val = declVal.replaceAll(/\s+/g, ';')
+        // replace continuous spaces to semi
+        const val = normalizeVariable(value)
         return applyStyle(`${map.prop}:${val}`)
       }
     }
@@ -145,19 +166,19 @@ export interface DeclarationResult {
   styles: string[]
 }
 
-export const Convert = (cssString: string): DeclarationResult[] => {
+export const Convert = (cssString: string): DeclarationResult[] | undefined => {
   const obj = css.parse(cssString)
-  const results: DeclarationResult[] = []
 
   if (obj.stylesheet && obj.stylesheet.rules) {
-    obj.stylesheet.rules.forEach((rule: css.Rule) => {
-      if (rule.declarations) {
-        const declarations = rule.declarations.filter(declaration => declaration.type === 'declaration' && (<css.Declaration>declaration).property)
+    const results: DeclarationResult[] = []
+    for (const _rule of obj.stylesheet.rules) {
+      const rule: css.Rule = _rule
+      if (rule.declarations !== undefined) {
+        const declarations = rule.declarations.filter(decl => decl.type === 'declaration' && (<css.Declaration>decl).property)
         const o = parseDeclarations(declarations)
         results.push({ selectors: rule.selectors, styles: o })
       }
-    })
+    }
+    return results
   }
-
-  return results
 }
