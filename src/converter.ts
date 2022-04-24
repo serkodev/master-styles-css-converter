@@ -78,11 +78,16 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
 
     const { property } = declaration
     const _value = declaration.value
+    let value = _value.trim()
+
+    // check empty
+    if (value === '') {
+      return all
+    }
 
     // check is important
     let isImportant = false
     const applyStyle = (style: string): string => style + (isImportant ? '!' : '')
-    let value = _value.trim()
     if (value.endsWith('!important')) {
       value = value.substring(0, value.lastIndexOf('!important'))
       value = value.trim()
@@ -173,18 +178,20 @@ export interface DeclarationResult {
 }
 
 export const Convert = (cssString: string): DeclarationResult[] | undefined => {
-  const obj = css.parse(cssString)
-
-  if (obj.stylesheet && obj.stylesheet.rules) {
-    const results: DeclarationResult[] = []
-    for (const _rule of obj.stylesheet.rules) {
-      const rule: css.Rule = _rule
-      if (rule.declarations !== undefined) {
-        const declarations = rule.declarations.filter(decl => decl.type === 'declaration' && (<css.Declaration>decl).property)
-        const o = parseDeclarations(declarations)
-        results.push({ selectors: rule.selectors, styles: o })
+  try {
+    const obj = css.parse(cssString)
+    if (obj.stylesheet && obj.stylesheet.rules) {
+      const results: DeclarationResult[] = []
+      for (const _rule of obj.stylesheet.rules) {
+        const rule: css.Rule = _rule
+        if (rule.declarations !== undefined) {
+          const declarations = rule.declarations.filter(decl => decl.type === 'declaration' && (<css.Declaration>decl).property)
+          const o = parseDeclarations(declarations)
+          results.push({ selectors: rule.selectors, styles: o })
+        }
       }
+      return results
     }
-    return results
   }
+  catch (e) {}
 }
