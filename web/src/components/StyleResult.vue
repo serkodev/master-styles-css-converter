@@ -33,12 +33,12 @@ const styles = computed(() => {
 
 <template>
   <div v-if="props.result" class="font-family:Menlo,Monaco,monospace">
-    <div v-if="selector" class="f:14 mb:6">
+    <div v-if="selector" class="f:14 mb:6 f:gold-30">
       {{ selector }}
     </div>
     <div
       v-if="styles"
-      class="bg:blue-10 f:blue f:14 d:inline-block p:4;8 r:6"
+      class="bg:gold-10 f:gold f:14 d:inline-block p:4;8 r:6"
     >
       {{ styles }}
     </div>
