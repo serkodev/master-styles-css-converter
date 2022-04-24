@@ -9,15 +9,16 @@ import AltProps from './alt-props'
 const cssPropertyMaster = new CSSProperties()
 Styles.forEach((style) => { cssPropertyMaster.process(style) })
 
-// TODO: font-family: Menlo, Monaco, monospace;
 const normalizeVariable = (value: string): string => {
-  const vals = value.split(/\s/).map((val) => {
-    const matches = val.match(/^var\(--(.+)\)$/)
-    if (matches !== null) {
-      return `$(${matches[1]})`
-    }
-    return val
-  })
+  const vals = value
+    .replace(/,\s+/g, ',')
+    .split(/\s/).map((val) => {
+      const matches = val.match(/^var\(--(.+)\)$/)
+      if (matches !== null) {
+        return `$(${matches[1]})`
+      }
+      return val
+    })
   return vals.join(';')
 }
 
