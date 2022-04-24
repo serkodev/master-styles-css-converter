@@ -4,9 +4,12 @@ import CSSProperties from 'master-styles-manager/css-properties'
 import { Styles } from '@master/styles'
 import AltProps from './alt-props'
 
+// TODO: font-family: green -> f:green
+
 const cssPropertyMaster = new CSSProperties()
 Styles.forEach((style) => { cssPropertyMaster.process(style) })
 
+// TODO: font-family: Menlo, Monaco, monospace;
 const normalizeVariable = (value: string): string => {
   const vals = value.split(/\s/).map((val) => {
     const matches = val.match(/^var\(--(.+)\)$/)
