@@ -1,6 +1,6 @@
 import css from 'css'
-import type { MapMeta, PriMapMeta } from 'master-styles-manager/css-properties'
-import CSSProperties from 'master-styles-manager/css-properties'
+import type { MapMeta, PriMapMeta } from 'master-styles-manager'
+import { CSSProperties } from 'master-styles-manager'
 import { Styles } from '@master/styles'
 import AltProps from './alt-props'
 
