@@ -42,5 +42,19 @@ const styles = computed(() => {
     >
       {{ styles }}
     </div>
+
+    <div
+      v-if="props.result.errorProperties.length > 0"
+      class="mt:8 bg:gold-90 f:gold-56 p:10;12 r:8"
+    >
+      <span class="f:bold">
+        Unsupported CSS {{ props.result.errorProperties.length == 1 ? "property" : "properties" }}:
+      </span>
+      <ul class="mt:8">
+        <li v-for="errProp of props.result.errorProperties" :key="errProp" class="ml:14 list-style-type:disc">
+          {{ errProp }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>

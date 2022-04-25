@@ -22,7 +22,7 @@ const normalizeVariable = (value: string): string => {
   return vals.join(';')
 }
 
-const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
+const parseDeclarations = (declarations: Array<css.Declaration>): { styles: string[]; errorProperties: string[] } => {
   interface Declaration {
     value: string
     property: string
@@ -76,6 +76,8 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
     }
   }
 
+  const errorPropertiesMap: Record<string, true> = {}
+
   const output = decls.reduce((all, declaration) => {
     if (declaration.finish)
       return all
@@ -116,7 +118,7 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
     const master = findMasterCSS(property)
     if (!master) {
       // not supported CSS
-      console.log('unsupport CSS property', property)
+      errorPropertiesMap[property] = true
       return all
     }
 
@@ -173,12 +175,16 @@ const parseDeclarations = (declarations: Array<css.Declaration>): string[] => {
     return all
   }, <Record<string, true>>{})
 
-  return Object.keys(output)
+  return {
+    styles: Object.keys(output),
+    errorProperties: Object.keys(errorPropertiesMap),
+  }
 }
 
 export interface DeclarationResult {
   selectors?: string[]
   styles: string[]
+  errorProperties: string[]
 }
 
 export const Convert = (cssString: string): DeclarationResult[] | undefined => {
@@ -191,7 +197,7 @@ export const Convert = (cssString: string): DeclarationResult[] | undefined => {
         if (rule.declarations !== undefined) {
           const declarations = rule.declarations.filter(decl => decl.type === 'declaration' && (<css.Declaration>decl).property)
           const o = parseDeclarations(declarations)
-          results.push({ selectors: rule.selectors, styles: o })
+          results.push({ selectors: rule.selectors, ...o })
         }
       }
       return results
