@@ -7,14 +7,6 @@ const props = defineProps({
   result: Object,
 })
 
-// result.value = styles.reduce((all, style) => {
-//   if (style.selectors) {
-//     all += `selector: ${style.selectors.join(', ')}\n`
-//   }
-//   all += `styles: ${style.styles.join(' ')}\n\n`
-//   return all
-// }, '')
-
 const selector = computed(() => {
   if (props.result && props.result.selectors) {
     return props.result.selectors.join(', ')
@@ -33,12 +25,12 @@ const styles = computed(() => {
 
 <template>
   <div v-if="props.result" class="font-family:Menlo,Monaco,monospace">
-    <div v-if="selector" class="f:14 mb:6 f:gold-30">
+    <div v-if="selector" class="f:16 mb:8 f:blue-30">
       {{ selector }}
     </div>
     <div
       v-if="styles"
-      class="bg:gold-90 f:gold-40 f:14 d:inline-block p:4;8 r:6"
+      class="bg:blue-90 f:blue f:16 d:inline-block p:8;12 r:6"
     >
       {{ styles }}
     </div>

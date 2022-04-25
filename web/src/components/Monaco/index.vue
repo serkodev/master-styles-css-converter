@@ -41,6 +41,6 @@ onMounted(() => {
 
 <template>
   <div class="ovf:hidden">
-    <div ref="el" class="w:full h:full" />
+    <div ref="el" class="w:full h:full px:8 pt:16" />
   </div>
 </template>
