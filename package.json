@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "web": "cd web && pnpm dev",
-    "web:build": "cd web && pnpm build"
+    "web:build": "cd web && pnpm build",
+    "build-alt-props": "ts-node ./tools/alt-props.ts"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.20.6",
