@@ -38,7 +38,7 @@ const styles = computed(() => {
     </div>
     <div
       v-if="styles"
-      class="bg:gold-10 f:gold f:14 d:inline-block p:4;8 r:6"
+      class="bg:gold-90 f:gold-40 f:14 d:inline-block p:4;8 r:6"
     >
       {{ styles }}
     </div>
