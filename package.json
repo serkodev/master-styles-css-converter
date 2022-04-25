@@ -8,23 +8,24 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.20.7",
+    "@mdn/browser-compat-data": "^4.1.17",
     "@types/css": "^0.0.33",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.26",
     "eslint": "^8.14.0",
     "jest": "^27.5.1",
+    "mdn-compat-browserlist": "^0.0.5",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3",
     "vite": "^2.9.5",
-    "vue-tsc": "^0.34.10",
-    "@mdn/browser-compat-data": "^4.1.17",
-    "mdn-compat-browserlist": "^0.0.5"
+    "vue-tsc": "^0.34.10"
   },
   "dependencies": {
     "@master/style": "^1.4.4",
     "@master/styles": "^1.9.2",
-    "css": "^3.0.0"
+    "css": "^3.0.0",
+    "master-styles-manager": "^0.0.1"
   },
   "jest": {
     "preset": "ts-jest"
