@@ -22,4 +22,9 @@ const altPropsMap = (): Record<string, string | string[]> => {
   return result
 }
 
-fs.writeFileSync(path.join(__dirname, '../data/alt-props.json'), JSON.stringify(altPropsMap()))
+const filePath = path.join(__dirname, '../data/alt-props.json')
+const dirname = path.dirname(filePath)
+if (!fs.existsSync(dirname)) {
+  fs.mkdirSync(dirname)
+}
+fs.writeFileSync(filePath, JSON.stringify(altPropsMap()))
