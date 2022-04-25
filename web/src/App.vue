@@ -32,7 +32,7 @@ onMounted(() => {
 
       <span class="mx:16 f:16 f:semibold">CSS to Master Styles Converter</span>
       <a
-        href="#" class="
+        href="https://github.com/serkodev/master-styles-css-converter" target="_blank" class="
       ml:auto
       justify-self:end
       fill:gray_svg
