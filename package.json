@@ -1,6 +1,6 @@
 {
   "name": "master-styles-css-converter",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "scripts": {
     "web": "cd web && pnpm dev",
     "web:build": "pnpm build-alt-props && cd web && pnpm build",
