@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@master/style": "^1.4.4",
-    "@master/styles": "^1.9.2",
+    "@master/styles": "^1.10.0",
     "css": "^3.0.0",
     "master-styles-manager": "^0.0.1"
   },

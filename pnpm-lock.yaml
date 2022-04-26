@@ -6,7 +6,7 @@ importers:
     specifiers:
       '@antfu/eslint-config': ^0.20.7
       '@master/style': ^1.4.4
-      '@master/styles': ^1.9.2
+      '@master/styles': ^1.10.0
       '@mdn/browser-compat-data': ^4.1.17
       '@types/css': ^0.0.33
       '@types/jest': ^27.4.1
@@ -23,7 +23,7 @@ importers:
       vue-tsc: ^0.34.10
     dependencies:
       '@master/style': 1.4.4
-      '@master/styles': 1.9.2_@master+style@1.4.4
+      '@master/styles': 1.10.0_@master+style@1.4.4
       css: 3.0.0
       master-styles-manager: 0.0.1
     devDependencies:
@@ -877,20 +877,20 @@ packages:
     resolution: {integrity: sha512-1VmLP04VDtLCsonDrnXlgiufT9h6cbltBRnf1h0FiZUnyuwxfLHwbvHFoCvhdxzDVxvDqngdB8REoCUmrpgXwA==}
     dev: false
 
+  /@master/styles/1.10.0_@master+style@1.4.4:
+    resolution: {integrity: sha512-y9pg/6VhmqH/sa7GS7y8UpqSWmMaYJwpKbGUslJPOSwcfD2nhjIcQ6reCcedXau0rGLw4IvHzItkMjVsLI3TmQ==}
+    peerDependencies:
+      '@master/style': ^1.0.0
+    dependencies:
+      '@master/style': 1.4.4
+    dev: false
+
   /@master/styles/1.8.1_@master+style@1.4.0:
     resolution: {integrity: sha512-/SwcQX6OwBg9g7AVmCXEBb7wj+Ya9pwKkGSjGuI9dGmV7BmWZDXb/bEVmzRWSmxRcq/lOJqDCn5tUT43DB9wiw==}
     peerDependencies:
       '@master/style': ^1.0.0
     dependencies:
       '@master/style': 1.4.0
-    dev: false
-
-  /@master/styles/1.9.2_@master+style@1.4.4:
-    resolution: {integrity: sha512-VHVfDnTpeDkJOjsl1zXJfUFlpbaB7hFgKx992AC+bspx2KEJgMiaTmomfmt3T4xO9aH1VS2w6oWPHjI9/S68lg==}
-    peerDependencies:
-      '@master/style': ^1.0.0
-    dependencies:
-      '@master/style': 1.4.4
     dev: false
 
   /@mdn/browser-compat-data/4.1.17:
@@ -4188,7 +4188,7 @@ packages:
     resolution: {integrity: sha512-77Vo8f0kkY2ti1e47WmgD12gpvDWM/nr/mBR2F8mul9jcpe4ZHhXSi2j0UoIiQIah8tswlqMXwPfL9u5w+8V2A==}
     dependencies:
       '@master/style': 1.4.4
-      '@master/styles': 1.9.2_@master+style@1.4.4
+      '@master/styles': 1.10.0_@master+style@1.4.4
       '@mdn/browser-compat-data': 4.1.17
       css.escape: 1.5.1
       genex: 1.1.0
