@@ -5,8 +5,8 @@ importers:
   .:
     specifiers:
       '@antfu/eslint-config': ^0.20.7
-      '@master/style': ^1.4.4
-      '@master/styles': ^1.10.0
+      '@master/style': ^1.5.0
+      '@master/styles': ^1.11.0
       '@mdn/browser-compat-data': ^4.1.17
       '@types/css': ^0.0.33
       '@types/jest': ^27.4.1
@@ -22,8 +22,8 @@ importers:
       vite: ^2.9.5
       vue-tsc: ^0.34.10
     dependencies:
-      '@master/style': 1.4.4
-      '@master/styles': 1.10.0_@master+style@1.4.4
+      '@master/style': 1.5.0
+      '@master/styles': 1.11.0_@master+style@1.5.0
       css: 3.0.0
       master-styles-manager: 0.0.1
     devDependencies:
@@ -46,8 +46,8 @@ importers:
       '@antfu/eslint-config': ^0.20.6
       '@master/keyframes.css': ^1.2.2
       '@master/normal.css': ^1.9.3
-      '@master/style': ^1.3.5
-      '@master/styles': ^1.8.0
+      '@master/style': ^1.5.0
+      '@master/styles': ^1.11.0
       '@types/node': ^17.0.25
       '@vitejs/plugin-vue': ^2.3.1
       clipboard: ^2.0.10
@@ -60,8 +60,8 @@ importers:
     dependencies:
       '@master/keyframes.css': 1.2.2
       '@master/normal.css': 1.9.3
-      '@master/style': 1.4.0
-      '@master/styles': 1.8.1_@master+style@1.4.0
+      '@master/style': 1.5.0
+      '@master/styles': 1.11.0_@master+style@1.5.0
       clipboard: 2.0.10
       monaco-editor: 0.33.0
       vue: 3.2.33
@@ -869,28 +869,16 @@ packages:
     resolution: {integrity: sha512-U+cnZbfLi4eXaYu6B2JwlXqmSUw8sv6irxCNzn5sjGsfccjDL7Tra9Nvrea0pHMs326HmBI9LkfQ0AdMqGzlOQ==}
     dev: false
 
-  /@master/style/1.4.0:
-    resolution: {integrity: sha512-2xSnAbt2KarWpSxC1xGsa/vmq/J0vO9wBq/sinMeBUOWcwIVkHNqMLXShd5UTvrxEZaZhIaoDJYcdmpwLeHxRw==}
+  /@master/style/1.5.0:
+    resolution: {integrity: sha512-lsFWWs/rfC9lhxwXDYF/AmhoHLQOBg1KQAZLEDL2zUQWVBLxeR0fQu2z8f3hZBP7W7bSeruuUX+sYhDVY0GtXg==}
     dev: false
 
-  /@master/style/1.4.4:
-    resolution: {integrity: sha512-1VmLP04VDtLCsonDrnXlgiufT9h6cbltBRnf1h0FiZUnyuwxfLHwbvHFoCvhdxzDVxvDqngdB8REoCUmrpgXwA==}
-    dev: false
-
-  /@master/styles/1.10.0_@master+style@1.4.4:
-    resolution: {integrity: sha512-y9pg/6VhmqH/sa7GS7y8UpqSWmMaYJwpKbGUslJPOSwcfD2nhjIcQ6reCcedXau0rGLw4IvHzItkMjVsLI3TmQ==}
+  /@master/styles/1.11.0_@master+style@1.5.0:
+    resolution: {integrity: sha512-n6sKMPW6i6mcXMUtlQM8lMAZMrr1GArAaFyW0LRYEQs+PdfBccIuRflztIASleIgJ2yC10Z4mQPAL0guOs2+ug==}
     peerDependencies:
       '@master/style': ^1.0.0
     dependencies:
-      '@master/style': 1.4.4
-    dev: false
-
-  /@master/styles/1.8.1_@master+style@1.4.0:
-    resolution: {integrity: sha512-/SwcQX6OwBg9g7AVmCXEBb7wj+Ya9pwKkGSjGuI9dGmV7BmWZDXb/bEVmzRWSmxRcq/lOJqDCn5tUT43DB9wiw==}
-    peerDependencies:
-      '@master/style': ^1.0.0
-    dependencies:
-      '@master/style': 1.4.0
+      '@master/style': 1.5.0
     dev: false
 
   /@mdn/browser-compat-data/4.1.17:
@@ -4187,8 +4175,8 @@ packages:
   /master-styles-manager/0.0.1:
     resolution: {integrity: sha512-77Vo8f0kkY2ti1e47WmgD12gpvDWM/nr/mBR2F8mul9jcpe4ZHhXSi2j0UoIiQIah8tswlqMXwPfL9u5w+8V2A==}
     dependencies:
-      '@master/style': 1.4.4
-      '@master/styles': 1.10.0_@master+style@1.4.4
+      '@master/style': 1.5.0
+      '@master/styles': 1.11.0_@master+style@1.5.0
       '@mdn/browser-compat-data': 4.1.17
       css.escape: 1.5.1
       genex: 1.1.0

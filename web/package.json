@@ -8,8 +8,8 @@
   "dependencies": {
     "@master/keyframes.css": "^1.2.2",
     "@master/normal.css": "^1.9.3",
-    "@master/style": "^1.3.5",
-    "@master/styles": "^1.8.0",
+    "@master/style": "^1.5.0",
+    "@master/styles": "^1.11.0",
     "clipboard": "^2.0.10",
     "monaco-editor": "^0.33.0",
     "vue": "^3.2.25"

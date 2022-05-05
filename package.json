@@ -22,8 +22,8 @@
     "vue-tsc": "^0.34.10"
   },
   "dependencies": {
-    "@master/style": "^1.4.4",
-    "@master/styles": "^1.10.0",
+    "@master/style": "^1.5.0",
+    "@master/styles": "^1.11.0",
     "css": "^3.0.0",
     "master-styles-manager": "^0.0.1"
   },
